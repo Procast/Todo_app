@@ -4,7 +4,6 @@ const TaskCollection=require('../models/task');
 
 
 module.exports.add_task=function(req,res){
-    console.log(req.body);
     let dateNeeded=req.body.date;
 
     TaskCollection.create({
@@ -13,10 +12,11 @@ module.exports.add_task=function(req,res){
         date:dateNeeded
     },function(err,newTask){
         if(err){
-            console.log("error in adding fields in collection");
+            console.log("error in adding fields in collection", err);
             return;
         }
         console.log(newTask);
+        
         return res.redirect('back');
     });
     

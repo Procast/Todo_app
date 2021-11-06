@@ -5,9 +5,11 @@ const TaskCollection=require('../models/task');
 module.exports.delete_task=function(req,res){
 
     console.log(req.query);
-    let id=req.query.id;
-    
-    TaskCollection.findByIdAndDelete(id,function(err){
+    let id=Object.keys(req.query);
+
+    TaskCollection.deleteMany({
+        _id : { $in: id}
+    },function(err){
         if (err){
             console.log("error in deleting the doc");
             return;

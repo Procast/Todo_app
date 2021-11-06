@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%></title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/home.css">
 </head>
+
 <body>
     <div id="container">
         <h1>TODO APP</h1>
-        <form action="/add-task" method="post">
+        <form action="/add-task" method="post" id="form-add-task">
             <div id="description">
                 <div>
                     <label for="des">DESCRIPTION</label>
                 </div>
                 <div>
-                    <input class="basic-style" type="text" id="des" name="des" placeholder="what do you need to do?" required>
+                    <input class="basic-style" type="text" id="des" name="des" placeholder="what do you need to do?"
+                        required>
                 </div>
             </div>
 
@@ -27,14 +33,14 @@
                         <label for="select-category">CATEGORY</label>
                     </div>
                     <div>
-                        <select id="select-category" name="choosenCategory">
+                        <select id="select-category" name="choosenCategory" required>
                             <option>Choose a category</option>
                             <option value="personal">Personal</option>
                             <option value="work">Work</option>
                             <option value="school">School</option>
                             <option value="cleaning">Cleaning</option>
                             <option value="other">Other</option>
-    
+
                         </select>
                     </div>
                 </div>
@@ -43,67 +49,52 @@
                         <label for="date-input">DUE DATE</label>
                     </div>
                     <div>
-                        <input type="date" id="date-input" name="date">
+                        <input type="date" id="date-input" name="date" required>
                     </div>
                 </div>
             </div>
-            <div id="buttons-container">
-                <div id="buttons-div">
-                    <button type="submit" id="add-task">
-                        <i class="fas fa-plus"></i>   ADD TASK
-                    </button>
-                    
-                        <button id="delete-task">
-                            <i class="fas fa-trash-alt"></i>  DELETE TASK
-                        </button>
-                    
-                    
-                </div>
-                
-            </div>
-            
-            
-        </form>
 
-        
-            <%for(let i of taskDetail){%>
+
+        </form>
+        <div class="buttons">
+            <button type="submit" id="add-task" form="form-add-task">
+                <i class="fas fa-plus"></i> ADD TASK
+            </button>
+            <button  type="submit" id="delete-task" form="form-delete-task">
+                <i class="fas fa-trash-alt"></i> DELETE TASK
+            </button>
+        </div>
+        <form action="delete-task" method="get" id="form-delete-task">
+            <%for(let i=0;i<taskDetail.length;i++){%>
                 <div class="result-container">
                     <div class="result">
                         <div>
-                            
-                                <input type="checkbox" name="<%=i.id%>" id="toDelete">
-                                <%=i.des%>
-                            
-                            
-                            
-                            
-                        
-                            
+
+                            <input type="checkbox" name="<%=taskDetail[i].id%>" id="toDelete">
+                            <%=taskDetail[i].des%>
+
                         </div>
-                        
-                        
+
                         <div class="date-margin">
                             <i class="far fa-calendar-alt"></i>
-                            <%=i.date.toDateString()%>
+                            <%=taskDetail[i].date.toDateString()%>
                         </div>
                     </div>
-                    <div class="category-margin">
-                        <%=i.choosenCategory%>
+                    <div class="category-margin" style="background: <%= color[taskDetail[i].choosenCategory] %>">
+                        <%=taskDetail[i].choosenCategory%>
                     </div>
                 </div>
 
+                <%}%>
+
                 
-            
-            <%}%>
-            
 
-        </div>
-
-
-        
+        </form>
     </div>
-    
+
+
 
     <script rel="text/javascript" src="/js/home.js"></script>
 </body>
+
 </html>

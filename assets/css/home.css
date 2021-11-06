@@ -15,6 +15,7 @@ body{
 }
 
 #container{
+    position:relative;
     width:60%;
     margin:0 auto;
     background-color:white;
@@ -87,8 +88,17 @@ select:focus{
 #buttons-div{
     position:absolute;
     top:50%;
-    left:50%;
+    left:35%;
     transform: translate(-50%,-50%);
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    margin: 1rem auto;
+    border-top: 1px solid darkgray;
 }
 
 /* add task button */
@@ -104,6 +114,8 @@ select:focus{
 
 /* delete task button */
 #delete-task{
+    top:24%;
+    left:52%;
     border:0;
     width:8rem;
     height:2.5rem;
@@ -134,13 +146,14 @@ select:focus{
 }
 
 .category-margin{
-    border:1px solid black;
+    
     height:30px;
     width:60px;
     text-align: center;
     margin-top: .5rem;
     margin-right: 1rem;
     padding:3px;
+    color:white;
     
 }
 
